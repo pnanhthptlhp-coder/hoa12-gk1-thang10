@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thi online Hóa học 10 – Mức độ phân hóa học sinh giỏi</title>
+<style>
+:root{--bg:#eef0f3;--card:#fff;--ink:#14171c;--mut:#5b6472;--line:#d5d9e0;--acc:#1f5fbf;--accbg:#e7f0fd;--ok:#157a3c;--okbg:#e4f5ea;--bad:#b3261e;--badbg:#fdeceb;--warn:#b25e00}
+@media(prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1d2128;--ink:#eceff4;--mut:#a3acba;--line:#363c47;--acc:#6aa5f5;--accbg:#1c2a40;--ok:#58c07b;--okbg:#17301f;--bad:#f2837c;--badbg:#3a1c1a;--warn:#f0a24a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Times New Roman","Noto Serif","Liberation Serif",serif}
+.ui{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin:14px 0}
+h1{font-size:1.35rem;margin:.2em 0;text-align:center}
+h2{font-size:1.1rem;margin:1.2em 0 .3em;border-bottom:2px solid var(--line);padding-bottom:4px}
+.c{text-align:center}.mut{color:var(--mut)}
+label.f{display:block;margin:12px 0;font-weight:600}
+input[type=text]{width:100%;padding:10px 12px;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);margin-top:4px}
+button{font:600 .95rem system-ui,sans-serif;padding:10px 18px;border-radius:8px;border:1px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer}
+button.alt{background:transparent;color:var(--acc)}
+button:disabled{opacity:.5;cursor:default}
+ul.rules{margin:.5em 0;padding-left:1.2em}
+#bar{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+#bar .in{max-width:860px;margin:0 auto;padding:8px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#timer{font:700 1.3rem ui-monospace,Consolas,monospace}#timer.warn{color:var(--bad)}
+#nav{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+#nav a{min-width:34px;text-align:center;padding:3px 6px;border:1px solid var(--line);border-radius:6px;font:600 .8rem system-ui,sans-serif;color:var(--ink);text-decoration:none}
+#nav a.done{background:var(--accbg);border-color:var(--acc);color:var(--acc)}
+#nav a.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+#nav a.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad)}
+.q{padding:10px 14px;margin:10px 0;border:1px solid var(--line);border-radius:10px;background:var(--card);scroll-margin-top:130px}
+.q.un{border-color:var(--warn)}
+.qt{margin:0 0 6px}
+.opts{display:grid;gap:4px}.opts.row{grid-template-columns:repeat(4,1fr)}
+label.opt,label.tf{display:block;padding:6px 10px;border:1px solid transparent;border-radius:8px;cursor:pointer}
+label.opt:hover,label.tf:hover{background:var(--accbg)}
+label.opt:has(input:checked),label.tf:has(input:checked){background:var(--accbg);border-color:var(--acc)}
+label.opt input,label.tf input{margin-right:8px;accent-color:var(--acc)}
+.st{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:4px 0;border-top:1px dashed var(--line)}
+.st:first-of-type{border-top:0}
+.st .tfs{display:flex;gap:6px;flex:none}
+.ok,label.ok{background:var(--okbg)!important;border-color:var(--ok)!important}
+.bad,label.bad{background:var(--badbg)!important;border-color:var(--bad)!important}
+.note{margin-top:8px;padding:8px 12px;border-left:4px solid var(--acc);background:var(--accbg);font-size:.95rem}
+.score{font:800 3rem system-ui,sans-serif;color:var(--acc);text-align:center;margin:0}
+table.sum{border-collapse:collapse;margin:10px auto;font-family:system-ui,sans-serif}
+table.sum td,table.sum th{border:1px solid var(--line);padding:6px 14px;text-align:left}
+.btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+sup,sub{font-size:.68em;line-height:0}.iso{white-space:nowrap}
+.ss{display:inline-flex;flex-direction:column;vertical-align:middle;font-size:.72em;line-height:1.05;text-align:right;margin-right:.08em}
+.ss sup,.ss sub{font-size:1em;position:static;vertical-align:baseline}
+[hidden]{display:none!important}
+@media(max-width:640px){.opts.row{grid-template-columns:repeat(2,1fr)}.card{padding:14px}}
+@media print{#bar,.btns,#nav{display:none}body{background:#fff;color:#000}.card,.q{border-color:#999}}
+</style>
+</head>
+<body>
+
+<section id="start" class="wrap">
+  <div class="card">
+    <p class="c mut ui" style="margin:0"><b>TRƯỜNG THPT LÊ HỒNG PHONG</b> – TỔ HÓA HỌC</p>
+    <h1>ĐỀ KIỂM TRA HÓA HỌC 10</h1>
+    <p class="c" style="margin:0"><b>MỨC ĐỘ PHÂN HÓA HỌC SINH GIỎI</b></p>
+    <p class="c mut" style="margin:0">Phạm vi: Giữa học kỳ I – Năm học 2026 – 2027</p>
+    <div class="ui">
+      <label class="f">Họ và tên<input type="text" id="fName" autocomplete="off"></label>
+      <label class="f">Lớp<input type="text" id="fClass" autocomplete="off"></label>
+      <label class="f">Số báo danh (SBD)<input type="text" id="fSbd" autocomplete="off"></label>
+      <ul class="rules mut" id="rules"></ul>
+      <div class="btns"><button id="btnStart">Bắt đầu làm bài</button></div>
+      <p class="c mut" id="startMsg" style="color:var(--bad)"></p>
+    </div>
+  </div>
+</section>
+
+<div id="bar" class="ui" hidden>
+  <div class="in">
+    <div><b id="who"></b><br><span class="mut" id="prog"></span></div>
+    <div id="timer">00:00</div>
+    <button id="btnSubmit">Nộp bài</button>
+  </div>
+  <div class="in" style="padding-top:0"><div id="nav"></div></div>
+</div>
+
+<main id="exam" class="wrap" hidden>
+  <div id="result" class="card ui" hidden></div>
+  <div id="body"></div>
+  <p class="c mut ui" id="foot" hidden>— Hết —</p>
+</main>
+
+<script>
+/* ======= CẤU HÌNH – giáo viên chỉnh tại đây ======= */
+const CFG={
+  minutes:60,          // thời gian làm bài (phút)
+  showAnswers:true,    // true: sau khi nộp hiện đáp án và lời giải; false: chỉ hiện điểm
+  allowRetake:false,   // true: cho phép học sinh làm lại trên cùng thiết bị
+  submitUrl:'',        // (tuỳ chọn) link Google Apps Script để nhận kết quả vào Google Sheets
+  storeKey:'hoa10_hsg_giuaki1_2026'
+};
+/* ======= DỮ LIỆU ĐỀ ======= */
+const D={"p1": [{"t": "Một vật liệu mới có khả năng tự phân hủy trong môi trường được nghiên cứu để thay thế nhựa truyền thống. Nội dung nào sau đây thuộc phạm vi nghiên cứu trực tiếp của hóa học?", "o": ["Tốc độ phân hủy của vật liệu và sự biến đổi cấu trúc của các chất tạo nên vật liệu.", "Ảnh hưởng của vật liệu đến mật độ dân số.", "Quỹ đạo chuyển động của vật liệu trong không gian.", "Sự phân bố địa lí của nơi sản xuất vật liệu."]}, {"t": "Khối lượng của một nguyên tử gần như tập trung hoàn toàn ở hạt nhân vì", "o": ["electron không có khối lượng.", "proton và neutron có khối lượng lớn hơn electron rất nhiều.", "số electron luôn nhỏ hơn số proton.", "hạt nhân có kích thước lớn hơn nguyên tử."]}, {"t": "Một nguyên tử trung hòa X có 13 electron và 14 neutron. Tổng số hạt mang điện trong X là", "o": ["13.", "14.", "26.", "27."]}, {"t": "Hai nguyên tử X và Y có tổng số proton lần lượt là 17 và 17, số neutron lần lượt là 18 và 20. Phát biểu đúng là", "o": ["X và Y là hai nguyên tố khác nhau.", "X và Y là hai đồng vị của cùng một nguyên tố.", "X và Y có cùng số khối.", "X và Y có cùng số neutron."]}, {"t": "Nguyên tử X có số khối bằng 39, số neutron nhiều hơn số proton 1 hạt. Số hiệu nguyên tử của X là", "o": ["18.", "19.", "20.", "21."]}, {"t": "Nguyên tố X có hai đồng vị <span class=\"iso\"><span class=\"ss\"><sup><i>A</i></sup><sub><i>Z</i></sub></span>X</span> và <span class=\"iso\"><span class=\"ss\"><sup><i>A</i>+2</sup><sub><i>Z</i></sub></span>X</span>. Hai đồng vị này", "o": ["có cùng số neutron.", "có cùng số proton.", "có cùng số khối.", "có cùng nguyên tử khối."]}, {"t": "Phát biểu nào phân biệt đúng “số khối” và “nguyên tử khối trung bình”?", "o": ["Cả hai đều luôn là số nguyên.", "Số khối áp dụng cho một đồng vị, còn nguyên tử khối trung bình phụ thuộc thành phần đồng vị.", "Số khối phụ thuộc tỉ lệ đồng vị.", "Nguyên tử khối trung bình luôn bằng số khối của đồng vị phổ biến nhất."]}, {"t": "Một nguyên tố có hai đồng vị với số khối 24 và 26. Nếu nguyên tử khối trung bình bằng 24,4 thì đồng vị nhẹ chiếm", "o": ["20%.", "40%.", "60%.", "80%."]}, {"t": "Theo mô hình hiện đại, mô tả nào sau đây đúng nhất?", "o": ["Electron chuyển động trên những quỹ đạo tròn xác định.", "Không thể xác định chính xác quỹ đạo chuyển động của electron; electron tồn tại trong vùng không gian có xác suất tìm thấy lớn.", "Electron đứng yên trong các orbital.", "Orbital là quỹ đạo chuyển động của electron."]}, {"t": "Một phân lớp có 5 orbital. Phân lớp đó là", "o": ["s.", "p.", "d.", "f."]}, {"t": "Tổng số orbital trong các phân lớp 3s, 3p, 3d bằng", "o": ["5.", "7.", "9.", "18."]}, {"t": "Số electron tối đa có thể chứa trong toàn bộ lớp <i>n</i> = 3 là", "o": ["8.", "10.", "18.", "32."]}, {"t": "Nguyên tử X có tổng số electron ở các phân lớp p bằng 8 và có 3 lớp electron. Cấu hình electron của X là", "o": ["1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>.", "1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>2</sup>.", "1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>4</sup>.", "1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>6</sup>."]}, {"t": "Nguyên tử X có cấu hình electron 1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>5</sup>. Số electron độc thân ở phân lớp ngoài cùng theo cách phân bố electron vào các orbital là", "o": ["0.", "1.", "2.", "3."]}, {"t": "Nguyên tử X thuộc một trong 20 nguyên tố đầu tiên và có 2 electron ở lớp ngoài cùng, lớp ngoài cùng là lớp thứ ba. Số hiệu nguyên tử của X là", "o": ["10.", "11.", "12.", "13."]}, {"t": "Nguyên tử X có 6 electron lớp ngoài cùng và thuộc chu kì 3. Cấu hình electron của X là", "o": ["1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>2</sup>.", "1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>4</sup>.", "1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>5</sup>.", "1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>6</sup>."]}, {"t": "Trong bảng tuần hoàn hiện đại, hai nguyên tố được xếp cùng một nhóm A khi nguyên tử của chúng thường có", "o": ["cùng số lớp electron.", "cùng số electron lớp ngoài cùng.", "cùng số proton.", "cùng nguyên tử khối."]}, {"t": "Nguyên tố X có cấu hình electron kết thúc bằng 3s<sup>2</sup>. X thuộc", "o": ["chu kì 2, nhóm IIA.", "chu kì 3, nhóm IIA.", "chu kì 3, nhóm IIIA.", "chu kì 2, nhóm IIIA."]}, {"t": "Nguyên tử X có cấu hình electron 1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>1</sup>. Phát biểu đúng là", "o": ["X là nguyên tố s.", "X thuộc chu kì 2.", "X thuộc nhóm IIIA.", "X là khí hiếm."]}, {"t": "Ba nguyên tố X, Y, Z lần lượt có cấu hình electron lớp ngoài cùng là 3s<sup>1</sup>, 3s<sup>2</sup>, 3s<sup>2</sup>3p<sup>1</sup>. Thứ tự số hiệu nguyên tử tăng dần là", "o": ["X &lt; Y &lt; Z.", "Z &lt; Y &lt; X.", "Y &lt; X &lt; Z.", "X &lt; Z &lt; Y."]}, {"t": "Hai nguyên tố X và Y thuộc cùng chu kì. X đứng trước Y trong bảng tuần hoàn. Phát biểu phù hợp nhất là", "o": ["bán kính X nhỏ hơn Y và độ âm điện X lớn hơn Y.", "bán kính X lớn hơn Y và độ âm điện X nhỏ hơn Y.", "bán kính và độ âm điện của X đều lớn hơn Y.", "bán kính và độ âm điện của X đều nhỏ hơn Y."]}, {"t": "Trong các nguyên tố Na, Mg, Al, Si, nguyên tố có bán kính nguyên tử nhỏ nhất là", "o": ["Na.", "Mg.", "Al.", "Si."]}, {"t": "Trong các nguyên tố Li, Na, K, nguyên tố có tính kim loại mạnh nhất là", "o": ["Li.", "Na.", "K.", "cả ba như nhau."]}, {"t": "Hai nguyên tố X và Y thuộc cùng nhóm A, X nằm trên Y. Phát biểu đúng là", "o": ["X có bán kính lớn hơn Y.", "X có tính kim loại mạnh hơn Y.", "Y có số lớp electron nhiều hơn X.", "Y có độ âm điện lớn hơn X."]}, {"t": "Cho các nguyên tố Na, Mg, Al, Si. Thứ tự giảm dần tính kim loại là", "o": ["Na &gt; Mg &gt; Al &gt; Si.", "Si &gt; Al &gt; Mg &gt; Na.", "Mg &gt; Na &gt; Al &gt; Si.", "Na &gt; Al &gt; Mg &gt; Si."]}, {"t": "Trong chu kì 3, oxide cao nhất của nguyên tố nào sau đây có tính acid mạnh nhất trong các chất được xét?", "o": ["Na.", "Mg.", "Al.", "Si."]}, {"t": "Cho các oxide Na<sub>2</sub>O, MgO, Al<sub>2</sub>O<sub>3</sub>, SiO<sub>2</sub>. Phát biểu đúng là", "o": ["tính base tăng dần từ Na<sub>2</sub>O đến SiO<sub>2</sub>.", "Na<sub>2</sub>O và MgO có tính base, Al<sub>2</sub>O<sub>3</sub> lưỡng tính, SiO<sub>2</sub> có tính acid.", "tất cả đều là oxide base.", "tất cả đều là oxide acid."]}, {"t": "Cho các hydroxide NaOH, Mg(OH)<sub>2</sub>, Al(OH)<sub>3</sub>. Khi đi từ Na đến Al trong chu kì 3, xu hướng phù hợp nhất là", "o": ["tính base tăng dần.", "tính base giảm dần, xuất hiện tính lưỡng tính.", "tính acid giảm dần.", "không có quy luật."]}], "p2": [{"t": "Nguyên tử X trung hòa có tổng số hạt proton, neutron và electron bằng 58. Số hạt mang điện nhiều hơn số hạt không mang điện là 18.", "s": ["X có 19 proton.", "Số neutron của X bằng 20.", "Số khối của X bằng 39.", "Nếu bán kính nguyên tử X xấp xỉ 2,0×10<sup>−10</sup> m và coi nguyên tử là hình cầu thì thể tích của một nguyên tử X xấp xỉ 3,35×10<sup>−29</sup> m<sup>3</sup>."]}, {"t": "Nguyên tố X có hai đồng vị bền <span class=\"iso\"><span class=\"ss\"><sup>35</sup></span>X</span> và <span class=\"iso\"><span class=\"ss\"><sup>37</sup></span>X</span>. Trong tự nhiên, nguyên tử khối trung bình của X bằng 35,5.", "s": ["Phần trăm số nguyên tử <span class=\"iso\"><span class=\"ss\"><sup>37</sup></span>X</span> bằng 25%.", "Tỉ lệ số nguyên tử <span class=\"iso\"><span class=\"ss\"><sup>35</sup></span>X</span> : <span class=\"iso\"><span class=\"ss\"><sup>37</sup></span>X</span> = 3 : 1.", "Trong một mẫu chứa 2&nbsp;000 nguyên tử X có trung bình 500 nguyên tử <span class=\"iso\"><span class=\"ss\"><sup>37</sup></span>X</span>.", "Nếu số hiệu nguyên tử của X bằng 17 thì tổng số neutron của một nguyên tử <span class=\"iso\"><span class=\"ss\"><sup>35</sup></span>X</span> và một nguyên tử <span class=\"iso\"><span class=\"ss\"><sup>37</sup></span>X</span> bằng 38."]}, {"t": "Cho ba nguyên tố X, Y, Z có số hiệu nguyên tử lần lượt bằng 11, 14 và 17.", "s": ["X, Y, Z đều thuộc chu kì 3.", "Cấu hình electron lớp ngoài cùng của Y là 3s<sup>2</sup>3p<sup>2</sup>.", "Bán kính nguyên tử biến đổi theo thứ tự X &gt; Y &gt; Z.", "Tính phi kim biến đổi theo thứ tự X &gt; Y &gt; Z."]}], "sol": {"1": "2<i>Z</i> + <i>N</i> = 58 và 2<i>Z</i> − <i>N</i> = 18 ⇒ <i>Z</i> = 19, <i>N</i> = 20, <i>A</i> = 39. <i>V</i> = <sup>4</sup>⁄<sub>3</sub>π<i>r</i><sup>3</sup> ≈ 3,35×10<sup>−29</sup> m<sup>3</sup>.", "2": "35(1 − <i>x</i>) + 37<i>x</i> = 35,5 ⇒ <i>x</i> = 0,25. Do đó <span class=\"iso\"><span class=\"ss\"><sup>35</sup></span>X</span> : <span class=\"iso\"><span class=\"ss\"><sup>37</sup></span>X</span> = 3 : 1; với <i>Z</i> = 17 thì <i>N</i><sub>35</sub> = 18, <i>N</i><sub>37</sub> = 20.", "3": "<i>Z</i> = 11, 14, 17 đều thuộc chu kì 3; Y có lớp ngoài cùng 3s<sup>2</sup>3p<sup>2</sup>. Trong một chu kì, bán kính giảm còn tính phi kim tăng từ trái sang phải."}};
+const KEY="eyJwMSI6IFsiQSIsICJCIiwgIkMiLCAiQiIsICJCIiwgIkIiLCAiQiIsICJEIiwgIkIiLCAiQyIsICJDIiwgIkMiLCAiQiIsICJCIiwgIkMiLCAiQiIsICJCIiwgIkIiLCAiQyIsICJBIiwgIkIiLCAiRCIsICJDIiwgIkMiLCAiQSIsICJEIiwgIkIiLCAiQiJdLCAicDIiOiBbW3RydWUsIHRydWUsIHRydWUsIHRydWVdLCBbdHJ1ZSwgdHJ1ZSwgdHJ1ZSwgdHJ1ZV0sIFt0cnVlLCB0cnVlLCB0cnVlLCBmYWxzZV1dfQ==";
+/* ===================================================== */
+const K=JSON.parse(atob(KEY));
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const N1=D.p1.length,N2=D.p2.length;
+let S=null,tick=null;
+
+function load(){try{return JSON.parse(localStorage.getItem(CFG.storeKey))}catch(e){return null}}
+function save(){try{localStorage.setItem(CFG.storeKey,JSON.stringify(S))}catch(e){}}
+function fresh(info){return{info,start:Date.now(),a1:Array(N1).fill(null),a2:Array.from({length:N2},()=>Array(4).fill(null)),done:false,res:null}}
+
+$('rules').innerHTML=[
+ `Thời gian làm bài: <b>${CFG.minutes} phút</b>. Hết giờ hệ thống tự động nộp bài.`,
+ `Phần I: ${N1} câu trắc nghiệm, mỗi câu đúng được 0,25 điểm.`,
+ `Phần II: ${N2} câu Đúng – Sai, mỗi câu 4 ý: đúng 1 ý được 0,1 điểm; 2 ý được 0,25 điểm; 3 ý được 0,5 điểm; 4 ý được 1,0 điểm.`,
+ `Bài làm được lưu tự động, tải lại trang không bị mất.`
+].map(x=>`<li>${x}</li>`).join('');
+
+$('btnStart').onclick=()=>{
+  const name=$('fName').value.trim();
+  if(!name){$('startMsg').textContent='Vui lòng nhập họ và tên.';return}
+  S=fresh({name,cls:$('fClass').value.trim(),sbd:$('fSbd').value.trim()});save();openExam();
+};
+
+function renderBody(review){
+  const show=review&&CFG.showAnswers; let h='';
+  h+='<h2 class="ui">PHẦN I. TRẮC NGHIỆM NHIỀU LỰA CHỌN</h2><p class="mut ui" style="margin:.2em 0">28 câu. Mỗi câu chỉ có một phương án đúng.</p>';
+  D.p1.forEach((q,i)=>{
+    const sel=S.a1[i],short=Math.max(...q.o.map(o=>o.replace(/<[^>]+>/g,'').length))<=22;
+    h+=`<section class="q${show&&sel===null?' un':''}" id="q${i}"><p class="qt"><b>Câu ${i+1}.</b> ${q.t}</p><div class="opts${short?' row':''}">`;
+    q.o.forEach((o,j)=>{const L='ABCD'[j];let c='opt';
+      if(show){if(L===K.p1[i])c+=' ok';else if(L===sel)c+=' bad'}
+      h+=`<label class="${c}"><input type="radio" name="a${i}" value="${L}"${sel===L?' checked':''}${review?' disabled':''}><b>${L}.</b> ${o}</label>`});
+    h+='</div>';
+    if(show)h+=`<div class="note ui">${sel===null?'Chưa trả lời. ':sel===K.p1[i]?'Đúng. ':'Sai. '}Đáp án đúng: <b>${K.p1[i]}</b></div>`;
+    h+='</section>';
+  });
+  h+='<h2 class="ui">PHẦN II. TRẮC NGHIỆM ĐÚNG – SAI</h2><p class="mut ui" style="margin:.2em 0">3 câu, mỗi câu gồm 4 ý. Trong mỗi ý a), b), c), d), chọn Đúng hoặc Sai.</p>';
+  D.p2.forEach((q,i)=>{
+    h+=`<section class="q" id="q${N1+i}"><p class="qt"><b>Câu ${i+1}.</b> ${q.t}</p>`;
+    q.s.forEach((s,k)=>{const sel=S.a2[i][k];
+      const lb=(v,t)=>{let c='tf';if(show){if(v===K.p2[i][k])c+=' ok';else if(v===sel)c+=' bad'}
+        return `<label class="${c}"><input type="radio" name="b${i}_${k}" value="${v?1:0}"${sel===v?' checked':''}${review?' disabled':''}>${t}</label>`};
+      h+=`<div class="st"><span><b>${'abcd'[k]})</b> ${s}</span><span class="tfs ui">${lb(true,'Đúng')}${lb(false,'Sai')}</span></div>`});
+    if(show){const c=cnt2(i);h+=`<div class="note ui">Đúng ${c}/4 ý → <b>${P2[c]} điểm</b>. Đáp án: ${K.p2[i].map((v,k)=>'abcd'[k]+') '+(v?'Đúng':'Sai')).join('; ')}.<br><span style="font-family:'Times New Roman',serif">${D.sol[i+1]||''}</span></div>`}
+    h+='</section>';
+  });
+  $('body').innerHTML=h;$('foot').hidden=false;
+}
+const P2=[0,0.1,0.25,0.5,1];
+const cnt2=i=>S.a2[i].reduce((n,v,k)=>n+(v===K.p2[i][k]?1:0),0);
+const fmt=x=>(Math.round(x*100)/100).toString().replace('.',',');
+
+function buildNav(){
+  let h='';for(let i=0;i<N1;i++)h+=`<a href="#q${i}" data-i="${i}">${i+1}</a>`;
+  for(let i=0;i<N2;i++)h+=`<a href="#q${N1+i}" data-i="${N1+i}">II.${i+1}</a>`;
+  $('nav').innerHTML=h;
+}
+function answered(){return S.a1.filter(v=>v!==null).length+S.a2.flat().filter(v=>v!==null).length}
+function updateNav(){
+  $('nav').querySelectorAll('a').forEach(a=>{const i=+a.dataset.i;let d;
+    d=i<N1?S.a1[i]!==null:S.a2[i-N1].every(v=>v!==null);
+    a.className=d?'done':''});
+  $('prog').textContent=`Đã trả lời ${answered()}/${N1+N2*4} mục`;
+}
+function remaining(){return S.start+CFG.minutes*60000-Date.now()}
+function runTimer(){
+  const t=()=>{const r=remaining();if(r<=0){$('timer').textContent='00:00';submit(true);return}
+    const s=Math.floor(r/1000);$('timer').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+    $('timer').className=r<300000?'warn':''};
+  t();tick=setInterval(t,1000);
+}
+function openExam(){
+  $('start').hidden=true;$('bar').hidden=false;$('exam').hidden=false;
+  $('who').textContent=S.info.name+(S.info.cls?' – '+S.info.cls:'');
+  buildNav();
+  if(S.done){showResult();return}
+  renderBody(false);updateNav();runTimer();
+}
+$('body').addEventListener('change',e=>{
+  const n=e.target.name;if(!n||S.done)return;
+  if(n[0]==='a')S.a1[+n.slice(1)]=e.target.value;
+  else{const[i,k]=n.slice(1).split('_').map(Number);S.a2[i][k]=e.target.value==='1'}
+  save();updateNav();
+});
+$('btnSubmit').onclick=()=>submit(false);
+
+function compute(){
+  const c1=S.a1.filter((v,i)=>v===K.p1[i]).length;
+  const d2=D.p2.map((_,i)=>cnt2(i));
+  const s1=c1*0.25,s2=d2.reduce((s,c)=>s+P2[c],0);
+  return{c1,s1,d2,s2,total:Math.round((s1+s2)*100)/100};
+}
+function submit(auto){
+  if(S.done)return;
+  if(!auto){const left=N1+N2*4-answered();
+    if(!confirm(left?`Bạn còn ${left} mục chưa trả lời. Vẫn nộp bài?`:'Xác nhận nộp bài?'))return}
+  clearInterval(tick);
+  S.done=true;S.end=Math.min(Date.now(),S.start+CFG.minutes*60000);S.res=compute();save();
+  sendResult();showResult();window.scrollTo({top:0});
+}
+function sendResult(){
+  if(!CFG.submitUrl)return;
+  try{fetch(CFG.submitUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify({name:S.info.name,cls:S.info.cls,sbd:S.info.sbd,total:S.res.total,p1:S.res.s1,p2:S.res.s2,a1:S.a1,a2:S.a2,time:new Date(S.end).toISOString()})})}catch(e){}
+}
+function summaryText(){const r=S.res;
+  return `Hóa học 10 (HSG) – ${S.info.name}${S.info.cls?' – lớp '+S.info.cls:''}${S.info.sbd?' – SBD '+S.info.sbd:''}\nĐiểm: ${fmt(r.total)}/10 (Phần I: ${fmt(r.s1)}/7; Phần II: ${fmt(r.s2)}/3)`}
+function showResult(){
+  const r=S.res||compute(),used=Math.round(((S.end||Date.now())-S.start)/60000);
+  $('who').textContent=S.info.name+(S.info.cls?' – '+S.info.cls:'');
+  $('timer').textContent='Đã nộp';$('timer').className='';$('btnSubmit').hidden=true;
+  $('prog').textContent='';
+  const res=$('result');res.hidden=false;
+  res.innerHTML=`<h1 class="ui">KẾT QUẢ BÀI LÀM</h1>
+   <p class="score">${fmt(r.total)}<span class="mut" style="font-size:1.3rem">/10</span></p>
+   <table class="sum">
+    <tr><th>Họ và tên</th><td>${esc(S.info.name)}</td></tr>
+    ${S.info.cls?`<tr><th>Lớp</th><td>${esc(S.info.cls)}</td></tr>`:''}
+    ${S.info.sbd?`<tr><th>SBD</th><td>${esc(S.info.sbd)}</td></tr>`:''}
+    <tr><th>Phần I</th><td>${r.c1}/${N1} câu đúng → ${fmt(r.s1)} điểm</td></tr>
+    <tr><th>Phần II</th><td>${r.d2.map((c,i)=>`Câu ${i+1}: ${c}/4 ý`).join('; ')} → ${fmt(r.s2)} điểm</td></tr>
+    <tr><th>Thời gian làm</th><td>${used} phút</td></tr></table>
+   <p class="c mut">${CFG.showAnswers?'Kéo xuống để xem đáp án và lời giải từng câu.':'Giáo viên sẽ công bố đáp án sau.'}</p>
+   <div class="btns"><button id="bCopy" class="alt">Sao chép kết quả</button><button id="bPrint" class="alt">In / Lưu PDF</button>${CFG.allowRetake?'<button id="bRetake" class="alt">Làm lại</button>':''}</div>`;
+  $('bCopy').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(summaryText()).then(()=>{$('bCopy').textContent='Đã sao chép'})};
+  $('bPrint').onclick=()=>window.print();
+  if($('bRetake'))$('bRetake').onclick=()=>{if(confirm('Xóa bài làm cũ và làm lại?')){try{localStorage.removeItem(CFG.storeKey)}catch(e){}location.reload()}};
+  renderBody(true);
+  if(CFG.showAnswers){$('nav').querySelectorAll('a').forEach(a=>{const i=+a.dataset.i;
+    const ok=i<N1?S.a1[i]===K.p1[i]:cnt2(i-N1)===4;a.className=ok?'ok':'bad'})}
+  else $('nav').hidden=true;
+}
+
+/* khôi phục bài đang làm dở / đã nộp */
+S=load();
+if(S&&S.info){if(!S.done&&remaining()<=0){S.done=true;S.end=S.start+CFG.minutes*60000;S.res=compute();save()}openExam()}
+else S=null;
+</script>
+</body>
+</html>
